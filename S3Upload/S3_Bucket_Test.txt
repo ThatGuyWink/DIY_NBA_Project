@@ -1,0 +1,23 @@
+import boto3
+
+AWS_ACCESSKEY = "AKIA3C6FL6CNQERUTJOW"
+AWS_SECRET_KEY = "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"
+AWS_BUCKET_NAME = "nbadiyproject"
+AWS_REGION = 'us-east-2'
+
+LOCAL_FILE = "test_file.txt"
+NAME_FOR_S3 = "test_file.txt"
+
+def main():
+    print("In the main method")
+    s3_client = boto3.client(
+        service_name='s3',
+        region_name=AWS_REGION,
+        aws_access_key_id=AWS_ACCESSKEY,
+        aws_secret_access_key=AWS_SECRET_KEY
+    )
+    response = s3_client.upload_file(LOCAL_FILE, AWS_BUCKET_NAME, NAME_FOR_S3)
+    print(f'upload file response: {response}')
+
+if __name__ == '__main__':
+    main()
